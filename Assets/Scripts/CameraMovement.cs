@@ -1,32 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
+using UnityEngine.UIElements;
 public class CameraMovement : MonoBehaviour
 {
     public Transform cameraPosition;
 
     public Camera Camera;
 
-    [Header("Camera Lean Settings")]
+    public float rotateTime;
+    public float returnTime;
     public float slopeAmount;
-    public float slopeSpeed;
-    public float returnSpeed;
-    private float currentSlope = 0f;
-    private float slopeVelocity = 0f; // SmoothDamp için hýz deðiþkeni
+
+    private Tween currentTween;
 
     void Update()
     {
 
         transform.position = cameraPosition.position;
 
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float inputX = Input.GetAxisRaw("Horizontal");
+        
+        if (currentTween != null) currentTween.Kill();
 
-        float targetSlope = (horizontalInput != 0) ? horizontalInput * -slopeAmount : 0f;
-
-        float smoothTime = (horizontalInput != 0) ? slopeSpeed : returnSpeed; 
-        currentSlope = Mathf.SmoothDamp(currentSlope, targetSlope, ref slopeVelocity, smoothTime * Time.deltaTime);
-
-        transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, currentSlope);
+        if (inputX > 0)
+        {
+            currentTween = transform.DORotate( new Vector3(0, 0, -slopeAmount), rotateTime);
+        }
+        else if (inputX < 0)
+        {
+            currentTween = transform.DORotate(new Vector3(0, 0, slopeAmount), rotateTime);
+        }
+        else
+        {
+            currentTween = transform.DORotate(Vector3.zero, returnTime);
+        }
     }
 }

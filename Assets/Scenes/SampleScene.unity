@@ -210,7 +210,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1b0b5ff7947adc7429edd8764de7392f, type: 2}
+  - {fileID: 2100000, guid: df7f24dfd3190c5449471fc7d50db431, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -506,7 +506,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1b0b5ff7947adc7429edd8764de7392f, type: 2}
+  - {fileID: 2100000, guid: df7f24dfd3190c5449471fc7d50db431, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -974,7 +974,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2f29d946e391a02408546ca1245a54d7, type: 2}
+  - {fileID: 2100000, guid: 1b0b5ff7947adc7429edd8764de7392f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1318,9 +1318,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPosition: {fileID: 1568773017}
   Camera: {fileID: 963194227}
-  slopeAmount: 2
-  slopeSpeed: 5
-  returnSpeed: 10
+  rotateTime: 2
+  returnTime: 3
+  slopeAmount: 180
 --- !u!4 &1085547922
 Transform:
   m_ObjectHideFlags: 0
