@@ -26,15 +26,15 @@ public class CameraMovement : MonoBehaviour
 
         if (inputX > 0)
         {
-            currentTween = transform.DORotate( new Vector3(0, 0, -slopeAmount), rotateTime);
+            currentTween = transform.DOLocalRotate(new Vector3(0, 0, -slopeAmount), rotateTime);
         }
         else if (inputX < 0)
         {
-            currentTween = transform.DORotate(new Vector3(0, 0, slopeAmount), rotateTime);
+            currentTween = transform.DOLocalRotate(new Vector3(0, 0, slopeAmount), rotateTime);
         }
         else
         {
-            currentTween = transform.DORotate(Vector3.zero, returnTime);
+            currentTween = transform.DOLocalRotate(Vector3.zero, returnTime);
         }
     }
 }
