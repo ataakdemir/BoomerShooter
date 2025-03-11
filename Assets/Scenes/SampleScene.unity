@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 47817260}
   - component: {fileID: 47817264}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,7 +284,7 @@ Transform:
   m_GameObject: {fileID: 47817259}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.5, y: 4.713084, z: 15.8}
+  m_LocalPosition: {x: 33.4, y: 4.713084, z: 42.2}
   m_LocalScale: {x: 37.961296, y: 12.254674, z: 8.268453}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 1058508626}
   - component: {fileID: 1058508625}
   - component: {fileID: 1058508630}
-  - component: {fileID: 1058508631}
+  - component: {fileID: 1058508632}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1019,7 +1019,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 17.5
+  m_Speed: 20
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1144,7 +1144,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1058508631
+--- !u!114 &1058508632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1153,11 +1153,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1058508623}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 221fafffc2019d549ac4573093b3dd39, type: 3}
+  m_Script: {fileID: 11500000, guid: e58facf1b34cd9e44bf0dc4bb775145a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 252702408}
   agent: {fileID: 1058508625}
+  player: {fileID: 252702408}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 40
+  timeBetweenAttacks: 0
+  sightRange: 20
+  attackRange: 0
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!1 &1085547920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,7 +1235,7 @@ GameObject:
   - component: {fileID: 1170673115}
   - component: {fileID: 1170673114}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1323,13 +1336,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170673113}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.6, y: 4.713084, z: 25.6}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -27.1, y: 4.713084, z: 33.4}
   m_LocalScale: {x: 37.961296, y: 12.254674, z: 8.268453}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1478799619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,7 +1357,7 @@ GameObject:
   - component: {fileID: 1478799620}
   - component: {fileID: 1478799624}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1429,13 +1442,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478799619}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.5, y: 4.713084, z: -28.1}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: -36, y: 4.713084, z: -17.9}
   m_LocalScale: {x: 37.961296, y: 12.254674, z: 8.268453}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!208 &1478799624
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1802,7 +1815,7 @@ GameObject:
   - component: {fileID: 2125188468}
   - component: {fileID: 2125188472}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1888,7 +1901,7 @@ Transform:
   m_GameObject: {fileID: 2125188467}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.7, y: 4.713084, z: -17.7}
+  m_LocalPosition: {x: 16.1, y: 4.713084, z: -17.7}
   m_LocalScale: {x: 37.961296, y: 12.254674, z: 8.268453}
   m_ConstrainProportionsScale: 0
   m_Children: []
