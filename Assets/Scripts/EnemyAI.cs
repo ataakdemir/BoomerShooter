@@ -11,7 +11,6 @@ public class EnemyAI : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     //Patrolling
-
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
@@ -99,9 +98,5 @@ public class EnemyAI : MonoBehaviour
     {
         alreadyAttacked = false;
     }
-
-
-
-
 
 }
