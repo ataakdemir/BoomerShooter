@@ -6,6 +6,8 @@ public class GunInventory : MonoBehaviour
     public GameObject rangedWeapon;
     public Transform weaponHolder;
 
+    private WeaponPickUp.WeaponType currentRangedWeaponType;
+
     private bool isMeleeWeaponSelected = true;
 
     void Start()
@@ -36,20 +38,29 @@ public class GunInventory : MonoBehaviour
 
     void SelectWeapon()
     {
-        meleeWeapon.SetActive(isMeleeWeaponSelected);
+        if (meleeWeapon != null)
+            meleeWeapon.SetActive(isMeleeWeaponSelected);
+
         if (rangedWeapon != null)
             rangedWeapon.SetActive(!isMeleeWeaponSelected);
     }
 
-    public void SetNewRangedWeapon(GameObject newWeaponPrefab)
+    public void SetNewRangedWeapon(GameObject newWeaponPrefab, WeaponPickUp.WeaponType newType, Vector3 position, Vector3 rotation)
     {
         if (rangedWeapon != null)
             Destroy(rangedWeapon);
 
         rangedWeapon = Instantiate(newWeaponPrefab, weaponHolder);
-        rangedWeapon.transform.localPosition = Vector3.zero;
-        rangedWeapon.transform.localRotation = Quaternion.identity;
+        rangedWeapon.transform.localPosition = position;
+        rangedWeapon.transform.localRotation = Quaternion.Euler(rotation);
+
+        currentRangedWeaponType = newType;
 
         rangedWeapon.SetActive(!isMeleeWeaponSelected);
+    }
+
+    public WeaponPickUp.WeaponType GetCurrentRangedWeaponType()
+    {
+        return currentRangedWeaponType;
     }
 }
