@@ -1,6 +1,9 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -29,10 +32,18 @@ public class Movement : MonoBehaviour
     public float fallMultiplier;
 
     public float slowWalkSpeed;
+
+    [Header("Health")]
+    public float maxHealth = 100f;
+    private float currentHealth;
+
+    public TMP_Text healthText;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -115,5 +126,24 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
 
+    }
+
+    public void PlayerTakesDamage(float amount)
+    {
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        healthText.text = "Health: " + currentHealth.ToString("0");
+        Debug.Log("Player Health:" + currentHealth);
+        if (currentHealth <= 0f)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Player died!");
+        DOTween.KillAll(); // Tüm animasyonlarý durdur
+        SceneManager.LoadScene("GameOver");
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -85,9 +85,13 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            //Attack Code
-         
-            
+
+            Movement playerMovement = player.GetComponent<Movement>();
+            if (playerMovement != null)
+            {
+                playerMovement.PlayerTakesDamage(20f); 
+            } 
+
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
