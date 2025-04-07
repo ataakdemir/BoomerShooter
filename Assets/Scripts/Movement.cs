@@ -140,6 +140,13 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public void HealPlayer(float healAmount)
+    {
+        currentHealth += healAmount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        healthText.text = "Health: " + currentHealth.ToString("0");
+    }
+
     void Die()
     {
         Debug.Log("Player died!");
