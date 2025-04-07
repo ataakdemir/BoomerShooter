@@ -10,7 +10,6 @@ public class BowWeapon : MonoBehaviour
 
     [Header("Combat Settings")]
     public Transform shootPoint;
-    public LayerMask enemyLayer;
 
     private float currentMana = 100f;
     private float chargeStartTime;
@@ -82,8 +81,24 @@ public class BowWeapon : MonoBehaviour
 
         transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
 
-        // alan hasarý
-        Collider[] hitEnemies = Physics.OverlapSphere(shootPoint.position + shootPoint.forward * weaponData.range, impactRadius, enemyLayer);
+        // Raycast yaparak en yakýn düþmaný bul:
+        RaycastHit hit;
+        Vector3 targetPosition;
+
+        if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, weaponData.range))
+        {
+            targetPosition = hit.point;
+            Debug.DrawLine(shootPoint.position, targetPosition, Color.green, 1f);
+        }
+        else
+        {
+            // Eðer düþman yoksa maksimum menzildeki noktaya ateþ et
+            targetPosition = shootPoint.position + shootPoint.forward * weaponData.range;
+            Debug.DrawLine(shootPoint.position, targetPosition, Color.red, 1f);
+        }
+
+        // Bu noktadan etki alaný oluþtur ve düþmanlara hasar ver:
+        Collider[] hitEnemies = Physics.OverlapSphere(targetPosition, impactRadius);
 
         foreach (Collider enemy in hitEnemies)
         {
@@ -94,6 +109,9 @@ public class BowWeapon : MonoBehaviour
                 Debug.Log(enemy.name + " damaged: " + weaponData.damage);
             }
         }
+
+        // Etki alanýný görsel olarak görmek için:
+        Debug.DrawRay(targetPosition, Vector3.up * 2f, Color.yellow, 1f);
     }
 
     void OnDrawGizmosSelected()
