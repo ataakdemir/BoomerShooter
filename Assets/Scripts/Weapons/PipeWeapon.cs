@@ -10,14 +10,14 @@ public class PipeWeapon : MonoBehaviour
 
     [Header("Combat Settings")]
     public Transform attackPoint;
-    public float attackRadius = 0.5f;  //etki alaný yarýçapý
-    public LayerMask enemyLayer;
+    public float attackRadius = 0.5f;
     private float currentMana = 100f;
-   
-    void Start()
-    {
-        
-    }
+
+    [Header("DOTween Punch Settings")]
+    public Vector3 punchRotation = new Vector3(0f, 0f, 30f); // Dönüþ miktarý
+    public float punchDuration = 0.2f;                       // Animasyon süresi
+    public int punchVibrato = 8;                             // Titreme sayýsý
+    public float punchElasticity = 1f;                       // Esneklik oraný
 
     void Update()
     {
@@ -26,6 +26,7 @@ public class PipeWeapon : MonoBehaviour
             Attack();
         }
     }
+
     void Attack()
     {
         if (currentMana < weaponData.manaCost)
@@ -36,7 +37,7 @@ public class PipeWeapon : MonoBehaviour
 
         currentMana -= weaponData.manaCost;
 
-       
+        transform.DOPunchRotation(punchRotation, punchDuration, punchVibrato, punchElasticity);
 
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, weaponData.range);
 
@@ -50,6 +51,7 @@ public class PipeWeapon : MonoBehaviour
             }
         }
     }
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
@@ -58,5 +60,4 @@ public class PipeWeapon : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, weaponData.range);
     }
-
 }

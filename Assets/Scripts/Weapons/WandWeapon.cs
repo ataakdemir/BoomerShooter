@@ -9,11 +9,10 @@ public class WandWeapon : MonoBehaviour
 
     [Header("Combat Settings")]
     public Transform shootPoint;
-    public LayerMask enemyLayer;
 
     [Header("Mana Settings")]
     public float initialManaCost = 5f;
-    private float currentMana = 100f; // geçici mana
+    private float currentMana = 100f;
     private bool isFiring = false;
     private float manaConsumptionTimer = 0f;
 
@@ -53,8 +52,9 @@ public class WandWeapon : MonoBehaviour
         manaConsumptionTimer = 0f;
         currentMana -= initialManaCost;
 
-        // ateþ animasyonu
         transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
+
+        ApplyDamage();
 
         Debug.Log("firing started initial mana consumed: " + initialManaCost);
     }
@@ -70,6 +70,9 @@ public class WandWeapon : MonoBehaviour
             if (currentMana >= weaponData.manaCostPerSecond)
             {
                 currentMana -= weaponData.manaCostPerSecond;
+
+                transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
+
                 ApplyDamage();
                 Debug.Log("continuing firing mana consumed: " + weaponData.manaCostPerSecond);
             }
@@ -90,15 +93,21 @@ public class WandWeapon : MonoBehaviour
     void ApplyDamage()
     {
         RaycastHit hit;
-        if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, weaponData.range, enemyLayer))
-        {
-            EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
 
+        if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, weaponData.range))
+        {
+            Debug.Log(hit.transform.name + " hit by Wand");
+
+            EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
             if (enemy != null)
             {
                 enemy.TakeDamage(weaponData.damage);
                 Debug.Log(enemy.name + " damaged: " + weaponData.damage);
             }
+        }
+        else
+        {
+            Debug.Log("Nothing hit by raycast");
         }
     }
 

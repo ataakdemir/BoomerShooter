@@ -270,7 +270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &110087905
 Transform:
   m_ObjectHideFlags: 0
@@ -1322,9 +1322,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 0245f8bb721140840b9ad5226ced60ed, type: 2}
   shootPoint: {fileID: 465762706}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
   initialManaCost: 5
   punchStrength: 0.2
   punchDuration: 0.1
@@ -1691,9 +1688,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPosition: {fileID: 1568773017}
   Camera: {fileID: 963194227}
+  rotateTime: 0
+  returnTime: 0
   slopeAmount: 2
-  slopeSpeed: 5
-  returnSpeed: 10
 --- !u!4 &1085547922
 Transform:
   m_ObjectHideFlags: 0
@@ -2182,7 +2179,7 @@ Transform:
   m_GameObject: {fileID: 1719979111}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.01, y: 1.39, z: 3.68}
+  m_LocalPosition: {x: 4.65, y: 1.39, z: 3.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2318,13 +2315,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868005258}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.007, z: 0}
+  m_LocalRotation: {x: -0.715718, y: 0.00000013131648, z: -0.000000006315531, w: 0.69838953}
+  m_LocalPosition: {x: -0.00006997958, y: 1.0070627, z: -0.00005318597}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1870899716}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -91.404, y: 0, z: 0}
 --- !u!1 &1870899711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2344,7 +2341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1870899712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2359,9 +2356,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: afe3b214887db9d49b7f680ecc90fe36, type: 2}
   shootPoint: {fileID: 1868005259}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
   punchStrength: 0.2
   punchDuration: 0.15
   punchVibrato: 10
@@ -2447,14 +2441,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870899711}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7152324, y: -0, z: -0, w: 0.69888675}
-  m_LocalPosition: {x: -10.21, y: 2.46, z: -0.08}
+  m_LocalRotation: {x: -0.52037436, y: -0.49068105, z: -0.47946724, w: 0.508482}
+  m_LocalPosition: {x: -0.59, y: 1.4, z: 3.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1868005259}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -91.324, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -91.324, y: 0, z: -86.63599}
 --- !u!1 &1887065094
 GameObject:
   m_ObjectHideFlags: 0
