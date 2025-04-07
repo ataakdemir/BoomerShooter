@@ -1557,7 +1557,7 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: b6d3f772b47060747bdf304751fb175c, type: 2}
   attackPoint: {fileID: 617609089}
   attackRadius: 0.5
-  punchRotation: {x: 30, y: 0, z: 0}
+  punchRotation: {x: 0, y: 0, z: 30}
   punchDuration: 0.2
   punchVibrato: 8
   punchElasticity: 1
