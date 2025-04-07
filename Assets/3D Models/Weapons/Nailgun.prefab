@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 2705857609423163365}
   - component: {fileID: 6649051361213229213}
   - component: {fileID: 3350534968651673207}
+  - component: {fileID: 9058073324091935215}
   m_Layer: 0
   m_Name: Nailgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2705857609423163365
 Transform:
   m_ObjectHideFlags: 0
@@ -34,6 +35,7 @@ Transform:
   - {fileID: 5592506628071911371}
   - {fileID: 3602966480506578476}
   - {fileID: 3911141193324732383}
+  - {fileID: 1407647873099703719}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &6649051361213229213
@@ -73,6 +75,58 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.8371729, z: 0.86441016}
   m_Center: {x: 0, y: 0.08141354, z: 0.2279545}
+--- !u!114 &9058073324091935215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995711834298380803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ae1d115ac74d1419b4d3cb2eac9fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.1
+  shakeStrength: {x: 2, y: 0, z: 0}
+  shakeVibrato: 10
+  shakeRandomness: 90
+  weaponData: {fileID: 11400000, guid: bf466bb00dd5abe4ab8044e6830537c6, type: 2}
+  magazineSize: 30
+  reloadTime: 1.5
+  fireRate: 0.1
+  shootPoint: {fileID: 1407647873099703719}
+--- !u!1 &3159074678711621030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1407647873099703719}
+  m_Layer: 0
+  m_Name: ShootPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1407647873099703719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3159074678711621030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.044, y: 0.418, z: 0.567}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2705857609423163365}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4381791642546116164
 GameObject:
   m_ObjectHideFlags: 0

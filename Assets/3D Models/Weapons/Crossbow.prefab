@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &162047837266343571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1892113547500713216}
+  m_Layer: 0
+  m_Name: ShootPoint3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1892113547500713216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162047837266343571}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.02, y: 0.38, z: 2.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9001281702121646656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1274293096205842360
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,13 +374,14 @@ GameObject:
   - component: {fileID: 9001281702121646656}
   - component: {fileID: 514857842407265647}
   - component: {fileID: 9048768911473764281}
+  - component: {fileID: 3917433023779030832}
   m_Layer: 0
   m_Name: Crossbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9001281702121646656
 Transform:
   m_ObjectHideFlags: 0
@@ -367,6 +399,7 @@ Transform:
   - {fileID: 4226063083448008055}
   - {fileID: 5539770354243643674}
   - {fileID: 6521014416737923759}
+  - {fileID: 1892113547500713216}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -361.25}
 --- !u!114 &514857842407265647
@@ -406,3 +439,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.917323, y: 1, z: 7.171385}
   m_Center: {x: -0.1456809, y: 0, z: 0.3807494}
+--- !u!114 &3917433023779030832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5802813471670777846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4abdc26c9543a4fa625f2c32bba0f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: afe3b214887db9d49b7f680ecc90fe36, type: 2}
+  shootPoint: {fileID: 1892113547500713216}
+  punchStrength: 0.2
+  punchDuration: 0.15
+  punchVibrato: 10
+  punchElasticity: 1

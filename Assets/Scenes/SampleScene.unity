@@ -1265,6 +1265,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nailgun
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 1995711834298380803, guid: 9469d5e02ea51c34cbf72d69938a9225, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 2705857609423163365, guid: 9469d5e02ea51c34cbf72d69938a9225, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.76
@@ -1351,6 +1358,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6d87a475fb549ea48a402d72e391612b, type: 3}
   m_PrefabInstance: {fileID: 1981743955095901836}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+--- !u!114 &1303845099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303845097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62178e9d811fc2944ba4bb1ca56749dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: b6d3f772b47060747bdf304751fb175c, type: 2}
+  attackPoint: {fileID: 617609089}
+  attackRadius: 0.5
+  punchRotation: {x: 30, y: 0, z: 0}
+  punchDuration: 0.2
+  punchVibrato: 8
+  punchElasticity: 1
+  playerCamera: {fileID: 963194227}
+>>>>>>> Stashed changes
 --- !u!1 &1478799619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,6 +1970,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crossbow
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 5802813471670777846, guid: d6e27872bb27a6e4cb203d171f0b2c82, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 9001281702121646656, guid: d6e27872bb27a6e4cb203d171f0b2c82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.7
@@ -2058,6 +2095,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wand
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 2622616105246215093, guid: 44a5bb396d4b52a42bfbce56a12132b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 6663860223501086430, guid: 44a5bb396d4b52a42bfbce56a12132b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.08
