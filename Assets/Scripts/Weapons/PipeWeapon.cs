@@ -19,9 +19,23 @@ public class PipeWeapon : MonoBehaviour
     public int punchVibrato = 8;                             // Titreme sayýsý
     public float punchElasticity = 1f;                       // Esneklik oraný
 
+
+    private Quaternion originalRotation;
+
+    void Start()
+    {
+        originalRotation = transform.localRotation;
+    }
+
+    [Header("Cooldown Settings")]
+    public float attackCooldown = 0.3f;
+    private bool canAttack = true;
+
+
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canAttack)
         {
             Attack();
         }
@@ -35,9 +49,11 @@ public class PipeWeapon : MonoBehaviour
             return;
         }
 
+        canAttack = false;
+
         currentMana -= weaponData.manaCost;
 
-        transform.DOPunchRotation(punchRotation, punchDuration, punchVibrato, punchElasticity);
+        transform.DOPunchRotation(punchRotation, punchDuration, punchVibrato, punchElasticity).OnComplete(() => transform.localRotation = originalRotation);
 
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, weaponData.range);
 
@@ -50,6 +66,12 @@ public class PipeWeapon : MonoBehaviour
                 enemyScript.TakeDamage(weaponData.damage);
             }
         }
+        StartCoroutine(ResetAttackCooldown());
+    }
+    IEnumerator ResetAttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
     private void OnDrawGizmosSelected()
