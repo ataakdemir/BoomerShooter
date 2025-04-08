@@ -12,12 +12,9 @@ public class WandWeapon : MonoBehaviour
 
     [Header("Mana Settings")]
     public float initialManaCost = 5f;
-    public float currentMana = 100f;         // EKLENDÝ (private yerine public ya da protected de olabilir)
-    public float maxMana = 100f;             // EKLENDÝ (Maksimum mana)
-    public float manaRegenAmount = 2f;       // EKLENDÝ (Her saniye artacak mana miktarý)
+    private float currentMana = 100f;
     private bool isFiring = false;
     private float manaConsumptionTimer = 0f;
-
 
     [Header("DOTween Settings")]
     public float punchStrength = 0.2f;
@@ -25,10 +22,6 @@ public class WandWeapon : MonoBehaviour
     public int punchVibrato = 10;
     public float punchElasticity = 1f;
 
-    private void Start()
-    {
-        StartCoroutine(RegenManaOverTime());
-    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -118,19 +111,6 @@ public class WandWeapon : MonoBehaviour
         }
     }
 
-    IEnumerator RegenManaOverTime()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f);  // Her 1 saniyede bir artýþ
-            currentMana += manaRegenAmount;
-
-            if (currentMana > maxMana)           // Eðer maxMana'yý aþarsa...
-            {
-                currentMana = maxMana;
-            }
-        }
-    }
     void OnDrawGizmosSelected()
     {
         if (shootPoint != null)
