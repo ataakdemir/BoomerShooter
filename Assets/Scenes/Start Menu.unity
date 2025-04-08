@@ -716,7 +716,7 @@ GameObject:
   - component: {fileID: 957829695}
   - component: {fileID: 957829694}
   m_Layer: 5
-  m_Name: 0076
+  m_Name: BoomerPunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0076
+  m_text: BoomerPunk
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 19506f8c87d3ecb4d90a7ca9dd8c7302, type: 2}
   m_sharedMaterial: {fileID: 90283648260718414, guid: 19506f8c87d3ecb4d90a7ca9dd8c7302, type: 2}
@@ -770,8 +770,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278815743
-  m_fontColor: {r: 1, g: 0.54509807, b: 0.03529412, a: 1}
+    rgba: 4278224895
+  m_fontColor: {r: 1, g: 0.5284553, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -788,17 +788,17 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 12.54
+  m_characterSpacing: 3
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
