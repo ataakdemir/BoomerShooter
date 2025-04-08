@@ -11,7 +11,10 @@ public class BowWeapon : MonoBehaviour
     [Header("Combat Settings")]
     public Transform shootPoint;
 
-    private float currentMana = 100f;
+    [Header("Mana Settings")]
+    [SerializeField] private float maxMana = 100f;       // Max mana
+    [SerializeField] private float currentMana = 100f;   // Anlýk mana (Inspector’da takip edebilmek için)
+
     private float chargeStartTime;
     private bool isCharging = false;
 
@@ -21,16 +24,38 @@ public class BowWeapon : MonoBehaviour
     public int punchVibrato = 10;
     public float punchElasticity = 1f;
 
+    // Her 1 saniyede bir mana eklemek için basit sayaç
+    private float manaRegenTimer = 0f;
+
     void Update()
     {
+        // Sol týk basýlý tutma
         if (Input.GetMouseButtonDown(0))
         {
             StartCharge();
         }
 
+        // Sol týk býrakma
         if (Input.GetMouseButtonUp(0))
         {
             ReleaseShot();
+        }
+
+        // ---- MANA REJENERASYONU ----
+        manaRegenTimer += Time.deltaTime;
+        if (manaRegenTimer >= 1f)
+        {
+            // Her 1 saniyede 2 mana ekle
+            currentMana += 2f;
+
+            // Maksimum deðeri aþmasýn
+            if (currentMana > maxMana)
+            {
+                currentMana = maxMana;
+            }
+
+            // Sayaç sýfýrla
+            manaRegenTimer = 0f;
         }
     }
 
@@ -81,7 +106,7 @@ public class BowWeapon : MonoBehaviour
 
         transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
 
-        // Raycast yaparak en yakýn düþmaný bul:
+        // Raycast yaparak hedef noktayý bul
         RaycastHit hit;
         Vector3 targetPosition;
 
@@ -92,12 +117,12 @@ public class BowWeapon : MonoBehaviour
         }
         else
         {
-            // Eðer düþman yoksa maksimum menzildeki noktaya ateþ et
+            // Eðer düþman yoksa maksimum menzile atýþ yap
             targetPosition = shootPoint.position + shootPoint.forward * weaponData.range;
             Debug.DrawLine(shootPoint.position, targetPosition, Color.red, 1f);
         }
 
-        // Bu noktadan etki alaný oluþtur ve düþmanlara hasar ver:
+        // Etki alaný oluþturup düþmanlara hasar ver
         Collider[] hitEnemies = Physics.OverlapSphere(targetPosition, impactRadius);
 
         foreach (Collider enemy in hitEnemies)
@@ -110,7 +135,7 @@ public class BowWeapon : MonoBehaviour
             }
         }
 
-        // Etki alanýný görsel olarak görmek için:
+        // Etki alanýnýn merkezini görsel olarak göster
         Debug.DrawRay(targetPosition, Vector3.up * 2f, Color.yellow, 1f);
     }
 
