@@ -5,13 +5,17 @@ using DG.Tweening;
 
 public class PipeWeapon : MonoBehaviour
 {
+    [Header("Mana Settings")]
+    public float currentMana = 100f;
+    public float maxMana = 100f;    // Maksimum mana
+    public float manaRegenAmount = 2f; // Her saniyede artacak mana miktarý
+
     [Header("Weapon Data")]
     public WeaponData weaponData;
 
     [Header("Combat Settings")]
     public Transform attackPoint;
     public float attackRadius = 0.5f;
-    private float currentMana = 100f;
 
     [Header("DOTween Punch Settings")]
     public Vector3 punchRotation = new Vector3(0f, 0f, 30f); // Dönüþ miktarý
@@ -25,6 +29,7 @@ public class PipeWeapon : MonoBehaviour
     void Start()
     {
         originalRotation = transform.localRotation;
+        StartCoroutine(RegenManaOverTime());
     }
 
     [Header("Cooldown Settings")]
@@ -72,6 +77,18 @@ public class PipeWeapon : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
+    }
+    IEnumerator RegenManaOverTime()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);  // Her 1 saniyede bir
+            currentMana += manaRegenAmount;       // currentMana’ya 2 ekle (manaRegenAmount ile belirlenir)
+            if (currentMana > maxMana)            // maxMana’yý geçmemesini saðla
+            {
+                currentMana = maxMana;
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()
