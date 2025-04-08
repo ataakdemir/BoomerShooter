@@ -11,9 +11,14 @@ public class GameOver : MonoBehaviour
     }
     public void StartMenu()
     {
-        SceneManager.LoadScene("Start Menu");
+        SceneManager.LoadScene("StartMenu");
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene("Tutorial Level");
+
+    }
     public void Quit()
     {
         Application.Quit();
