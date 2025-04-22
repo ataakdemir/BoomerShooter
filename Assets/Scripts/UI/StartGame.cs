@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour
-{
-    public string levelToLoad;
-    public void Play()
+{    public void Play()
     {
-        SceneManager.LoadScene(levelToLoad);
+        SceneManager.LoadScene("Tutorial Level");
     } 
 
     public void Quit()
