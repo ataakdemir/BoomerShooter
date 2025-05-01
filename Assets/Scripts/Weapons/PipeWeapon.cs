@@ -14,7 +14,7 @@ public class PipeWeapon : MonoBehaviour
     private float currentMana = 100f;
 
     [Header("DOTween Punch Settings")]
-    public Vector3 punchRotation = new Vector3(0f, 0f, 30f); // Dönüþ miktarý
+    public Vector3 punchRotation = new Vector3(0f, 0f, 70f); // Dönüþ miktarý
     public float punchDuration = 0.2f;                       // Animasyon süresi
     public int punchVibrato = 8;                             // Titreme sayýsý
     public float punchElasticity = 1f;                       // Esneklik oraný
