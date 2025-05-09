@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum EnemyType { Melee, Ranged }
 public class EnemyAI : MonoBehaviour
 {
+
+    public EnemyType enemyType = EnemyType.Melee;
+
 
     public NavMeshAgent agent;
     public Transform player;
@@ -22,6 +26,11 @@ public class EnemyAI : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+
+    [Header("Ranged Enemy Settings")]
+    public GameObject projectilePrefab;
+    public Transform shootPoint;
+    public float projectileSpeed;
 
     private Animator animator;
     private void Awake()
@@ -44,9 +53,13 @@ public class EnemyAI : MonoBehaviour
             ChasePlayer();
 
         if (playerInSightRange && playerInAttackRange)
-            AttackPlayer();
-
-
+        {
+            if (enemyType == EnemyType.Melee)
+                AttackPlayer();
+            else if (enemyType == EnemyType.Ranged)
+                RangedAttack();
+        }
+            
     }
     private void Patrolling()
     {
@@ -83,9 +96,12 @@ public class EnemyAI : MonoBehaviour
     }
     private void AttackPlayer()
     {
+        agent.isStopped = true;
         agent.updateRotation = false;
 
-        transform.LookAt(player);
+        Vector3 direction = (player.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
 
         if (!alreadyAttacked)
         {
@@ -103,9 +119,37 @@ public class EnemyAI : MonoBehaviour
     
     }
 
+    private void RangedAttack()
+    {
+        agent.isStopped = true;
+        agent.updateRotation = false;
+
+        Vector3 direction = (player.position + Vector3.up * 1f - shootPoint.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+
+        if (!alreadyAttacked)
+        {
+            animator.SetTrigger("Attack");
+
+            GameObject bullet = Instantiate(projectilePrefab, shootPoint.position, Quaternion.LookRotation(direction));
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.useGravity = false;
+                rb.velocity = direction * projectileSpeed;
+            }
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+
     private void ResetAttack()
     {
         alreadyAttacked = false;
+        agent.isStopped = false;
+        agent.updateRotation = true;
     }
 
 }
