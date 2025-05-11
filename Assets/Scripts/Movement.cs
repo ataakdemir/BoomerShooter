@@ -147,10 +147,10 @@ public class Movement : MonoBehaviour
         healthText.text = "Health: " + currentHealth.ToString("0");
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("Player died!");
-        DOTween.KillAll(); // Tüm animasyonlarý durdur
+        DOTween.KillAll(); // Tï¿½m animasyonlarï¿½ durdur
         SceneManager.LoadScene("GameOver");
     }
 }
