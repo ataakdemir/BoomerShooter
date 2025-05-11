@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 1368808772306029619}
   - component: {fileID: 5471018134430329324}
   - component: {fileID: 9198325166630023373}
+  - component: {fileID: 7074366704942447723}
   m_Layer: 0
   m_Name: Melee_Enemy
   m_TagString: Untagged
@@ -270,6 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e58facf1b34cd9e44bf0dc4bb775145a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
   agent: {fileID: 1368808772306029619}
   player: {fileID: 0}
   whatIsGround:
@@ -285,6 +287,9 @@ MonoBehaviour:
   attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
+  projectilePrefab: {fileID: 0}
+  shootPoint: {fileID: 0}
+  projectileSpeed: 0
 --- !u!114 &6840247880482346943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,10 +313,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 15
-  m_Acceleration: 8
+  m_Speed: 17
+  m_Acceleration: 16
   avoidancePriority: 50
-  m_AngularSpeed: 720
+  m_AngularSpeed: 260
   m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -362,6 +367,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.646244, y: 5.47086, z: 2.6378634}
   m_Center: {x: -0.29807606, y: 2.2354295, z: 0.052018363}
+--- !u!54 &7074366704942447723
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3427020813956659522}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4916760130953226974
 GameObject:
   m_ObjectHideFlags: 0
