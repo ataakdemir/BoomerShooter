@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7239605444234407994}
   - component: {fileID: 5363359997358637178}
   m_Layer: 0
-  m_Name: Health Collectible
+  m_Name: "ESK\u0130 Health Collectible"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
