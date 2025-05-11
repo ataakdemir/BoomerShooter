@@ -118,7 +118,6 @@ public class EnemyAI : MonoBehaviour
         }
     
     }
-
     private void RangedAttack()
     {
         agent.isStopped = true;
@@ -131,20 +130,22 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             animator.SetTrigger("Attack");
-
-            GameObject bullet = Instantiate(projectilePrefab, shootPoint.position, Quaternion.LookRotation(direction));
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.useGravity = false;
-                rb.velocity = direction * projectileSpeed;
-            }
-
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
         }
     }
-
+    public void ShootProjectile()
+    {
+        Vector3 direction = (player.position + Vector3.up * 1f - shootPoint.position).normalized;
+        GameObject bullet = Instantiate(projectilePrefab, shootPoint.position, Quaternion.LookRotation(direction));
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.useGravity = false;
+            rb.velocity = direction * projectileSpeed;
+        }
+    }
     private void ResetAttack()
     {
         alreadyAttacked = false;

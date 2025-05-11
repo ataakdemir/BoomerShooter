@@ -609,11 +609,11 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: b6d3f772b47060747bdf304751fb175c, type: 2}
   attackPoint: {fileID: 812255055}
   attackRadius: 0.5
-  punchRotation: {x: 0, y: 0, z: 30}
+  punchRotation: {x: 0, y: 0, z: 70}
   punchDuration: 0.2
   punchVibrato: 8
   punchElasticity: 1
-  attackCooldown: 0.5
+  attackCooldown: 0.3
 --- !u!136 &422864859
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f30d54bd4b6d0429aa9be23f04d4f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 17
+  moveSpeed: 16
   orientation: {fileID: 892768492}
   playerHeight: 2
   groundMask:
