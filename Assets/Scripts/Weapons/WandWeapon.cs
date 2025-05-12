@@ -12,7 +12,7 @@ public class WandWeapon : MonoBehaviour
 
     [Header("Mana Settings")]
     public float initialManaCost = 5f;
-    private float currentMana = 100f;
+
     private bool isFiring = false;
     private float manaConsumptionTimer = 0f;
 
@@ -25,38 +25,27 @@ public class WandWeapon : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
             StartFiring();
-        }
 
         if (Input.GetMouseButton(0) && isFiring)
-        {
             ContinueFiring();
-        }
 
         if (Input.GetMouseButtonUp(0))
-        {
             StopFiring();
-        }
     }
 
     void StartFiring()
     {
-        if (currentMana < initialManaCost)
+        if (!PlayerManaManager.Instance.UseMana(initialManaCost))
         {
-            Debug.Log("not enough mana to start firing!");
+            Debug.Log("Not enough mana to start firing!");
             return;
         }
 
         isFiring = true;
         manaConsumptionTimer = 0f;
-        currentMana -= initialManaCost;
-
-        transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
-
         ApplyDamage();
-
-        Debug.Log("firing started initial mana consumed: " + initialManaCost);
+        transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
     }
 
     void ContinueFiring()
@@ -67,56 +56,33 @@ public class WandWeapon : MonoBehaviour
         {
             manaConsumptionTimer = 0f;
 
-            if (currentMana >= weaponData.manaCostPerSecond)
+            if (!PlayerManaManager.Instance.UseMana(weaponData.manaCostPerSecond))
             {
-                currentMana -= weaponData.manaCostPerSecond;
-
-                transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
-
-                ApplyDamage();
-                Debug.Log("continuing firing mana consumed: " + weaponData.manaCostPerSecond);
-            }
-            else
-            {
-                Debug.Log("no mana anymore!");
+                Debug.Log("No mana anymore!");
                 StopFiring();
+                return;
             }
+
+            ApplyDamage();
+            transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
         }
     }
 
     void StopFiring()
     {
         isFiring = false;
-        Debug.Log("firing stopped.");
     }
 
     void ApplyDamage()
     {
         RaycastHit hit;
+        Debug.DrawRay(shootPoint.position, shootPoint.forward * weaponData.range, Color.cyan, 1f);
 
         if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, weaponData.range))
         {
-            Debug.Log(hit.transform.name + " hit by Wand");
-
             EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
             if (enemy != null)
-            {
                 enemy.TakeDamage(weaponData.damage);
-                Debug.Log(enemy.name + " damaged: " + weaponData.damage);
-            }
-        }
-        else
-        {
-            Debug.Log("Nothing hit by raycast");
-        }
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        if (shootPoint != null)
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawLine(shootPoint.position, shootPoint.position + shootPoint.forward * weaponData.range);
         }
     }
 }
