@@ -38,6 +38,8 @@ public class Movement : MonoBehaviour
     private float currentHealth;
 
     public TMP_Text healthText;
+
+    public AudioSource footStepSound;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -60,12 +62,16 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) && grounded)
         {
-            moveSpeed = slowWalkSpeed; 
+            moveSpeed = slowWalkSpeed;
+            footStepSound.pitch = 0.6f;
         }
         else
         {
-            moveSpeed = 17f; 
+            moveSpeed = 17f;
+            footStepSound.pitch = 1f;
         }
+
+        HandleFootStep();
 
     }
     private void FixedUpdate()
@@ -152,5 +158,26 @@ public class Movement : MonoBehaviour
         Debug.Log("Player died!");
         DOTween.KillAll(); // T�m animasyonlar� durdur
         SceneManager.LoadScene("GameOver");
+    }
+
+    private void HandleFootStep()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        bool isMoving = flatVel.magnitude > 0.1f;
+
+        if(grounded && isMoving)
+        {
+            if (!footStepSound.isPlaying)
+            {
+                footStepSound.Play();
+            }
+        }
+        else
+        {
+            if (footStepSound.isPlaying)
+            {
+                footStepSound.Pause();
+            }
+        }
     }
 }

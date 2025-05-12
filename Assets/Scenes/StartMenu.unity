@@ -760,10 +760,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BoomerPunk
+  m_text: Fast and murderous
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 19506f8c87d3ecb4d90a7ca9dd8c7302, type: 2}
-  m_sharedMaterial: {fileID: 90283648260718414, guid: 19506f8c87d3ecb4d90a7ca9dd8c7302, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50097fd4c61a6c14dbafe8f25828f567, type: 2}
+  m_sharedMaterial: {fileID: -6780422804678484381, guid: 50097fd4c61a6c14dbafe8f25828f567, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -787,8 +787,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 26.13
+  m_fontSizeBase: 26.13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
