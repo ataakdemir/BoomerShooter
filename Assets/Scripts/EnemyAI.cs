@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum EnemyType { Melee, Ranged }
+public enum EnemyType { Melee, Ranged, Turret }
 public class EnemyAI : MonoBehaviour
 {
 
@@ -58,6 +58,8 @@ public class EnemyAI : MonoBehaviour
                 AttackPlayer();
             else if (enemyType == EnemyType.Ranged)
                 RangedAttack();
+    //        else if (enemyType == EnemyType.Turret)
+    //            TurretAttack();
         }
             
     }
@@ -135,6 +137,23 @@ public class EnemyAI : MonoBehaviour
 
         }
     }
+
+    //private void TurretAttack()
+    //{
+    //    agent.isStopped = true;
+    //    agent.updateRotation = false;
+
+    //    Vector3 direction = (player.position + Vector3.up * 1f - shootPoint.position).normalized;
+    //    Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+    //    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+
+    //    if (!alreadyAttacked)
+    //    {
+    //        animator.SetTrigger("Attack"); 
+    //        alreadyAttacked = true;
+    //        Invoke(nameof(ResetAttack), timeBetweenAttacks);
+    //    }
+    //}
     public void ShootProjectile()
     {
         Vector3 direction = (player.position + Vector3.up * 1f - shootPoint.position).normalized;
