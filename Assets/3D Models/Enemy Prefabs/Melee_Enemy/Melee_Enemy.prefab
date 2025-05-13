@@ -281,10 +281,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 50
-  timeBetweenAttacks: 2
-  sightRange: 50
-  attackRange: 5
+  walkPointRange: 30
+  timeBetweenAttacks: 4
+  sightRange: 30
+  attackRange: 3
   playerInSightRange: 0
   playerInAttackRange: 0
   projectilePrefab: {fileID: 0}
