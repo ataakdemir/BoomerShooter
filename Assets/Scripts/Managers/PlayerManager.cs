@@ -10,7 +10,7 @@ public class PlayerManaManager : MonoBehaviour
 
     [Header("Mana Settings")]
     public float maxMana = 100f;
-    public float regenRate = 2f;
+    public float regenRate = 1f;
     public float regenDelayAfterFire = 2f;
 
     [Header("UI")]
