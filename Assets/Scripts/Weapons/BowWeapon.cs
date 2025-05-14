@@ -22,10 +22,6 @@ public class BowWeapon : MonoBehaviour
 
     void Update()
     {
-
-        if (!transform.IsChildOf(GameObject.FindWithTag("Player").GetComponentInChildren<GunInventory>().weaponHolder))
-            return;
-
         if (Input.GetMouseButtonDown(0))
             StartCharge();
 
@@ -41,7 +37,6 @@ public class BowWeapon : MonoBehaviour
 
     void ReleaseShot()
     {
-        
         if (!isCharging)
             return;
 
@@ -93,9 +88,5 @@ public class BowWeapon : MonoBehaviour
             if (enemyScript != null)
                 enemyScript.TakeDamage(weaponData.damage);
         }
-
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.bowFireSound);
-
     }
-
 }

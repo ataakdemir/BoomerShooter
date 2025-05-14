@@ -19,7 +19,6 @@ public class HealthCollectible : MonoBehaviour
             if(movement != null)
             {
                 movement.HealPlayer(bonusHealth);
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.healthPickupSound);
                 Destroy(gameObject);
             }
         }
