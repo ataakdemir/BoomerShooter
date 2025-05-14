@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,21 +12,25 @@ public class EnemyBullet : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player"))
+        Debug.Log("Çarpışma gerçekleşti: " + collision.gameObject.name);
+
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Movement player = other.GetComponent<Movement>();
+            Movement player = collision.gameObject.GetComponent<Movement>();
             if (player != null)
             {
                 player.PlayerTakesDamage(damage);
             }
+
+            Destroy(gameObject); // ✅ Oyuncuya çarptıktan sonra mermiyi yok et
         }
 
-        if (!other.isTrigger)
+        // ✅ Obstacle'a çarptıysa da mermiyi yok et
+        else if (collision.gameObject.CompareTag("Obstacle"))
         {
             Destroy(gameObject);
         }
     }
-
 }

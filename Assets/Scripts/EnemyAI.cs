@@ -96,6 +96,13 @@ public class EnemyAI : MonoBehaviour
     }
     private void AttackPlayer()
     {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer > attackRange)
+        {
+            ResetAttack();
+            return;
+        }
+
         agent.isStopped = true;
         agent.updateRotation = false;
 
@@ -110,13 +117,12 @@ public class EnemyAI : MonoBehaviour
             Movement playerMovement = player.GetComponent<Movement>();
             if (playerMovement != null)
             {
-                playerMovement.PlayerTakesDamage(20f); 
-            } 
+                playerMovement.PlayerTakesDamage(20f);
+            }
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-    
     }
     private void RangedAttack()
     {
@@ -139,6 +145,10 @@ public class EnemyAI : MonoBehaviour
     {
         Vector3 direction = (player.position + Vector3.up * 1f - shootPoint.position).normalized;
         GameObject bullet = Instantiate(projectilePrefab, shootPoint.position, Quaternion.LookRotation(direction));
+
+        // Eğer mermiye çarpmasını istemediğin collider varsa, ignore et
+        Physics.IgnoreCollision(bullet.GetComponent<Collider>(), GetComponent<Collider>());
+
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
         {
