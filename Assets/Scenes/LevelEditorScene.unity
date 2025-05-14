@@ -465,8 +465,8 @@ Transform:
   m_GameObject: {fileID: 60990338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7.8, y: 18.51, z: 19.293}
-  m_LocalScale: {x: 1, y: 11, z: 10}
+  m_LocalPosition: {x: 7.96, y: 18.51, z: 19.293}
+  m_LocalScale: {x: 1, y: 11, z: 8.3838}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2005049205}
@@ -4583,18 +4583,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 415099223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62178e9d811fc2944ba4bb1ca56749dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 6161c5258dedf5b4989f1c5b6d43d77d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: b6d3f772b47060747bdf304751fb175c, type: 2}
   attackPoint: {fileID: 361798389}
-  punchRotation: {x: 0, y: 0, z: 100}
+  punchRotation: {x: 0, y: 0, z: 70}
   punchDuration: 0.2
-  punchVibrato: 13
+  punchVibrato: 8
   punchElasticity: 1
-  attackCooldown: 0.1
-  canAttack: 1
-  originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  attackCooldown: 0.3
 --- !u!1 &422472632
 GameObject:
   m_ObjectHideFlags: 0
@@ -4940,6 +4938,10 @@ PrefabInstance:
     - target: {fileID: 1755560726043196287, guid: 291005319e1fabe4288b01d6068e65c6, type: 3}
       propertyPath: m_Name
       value: Yeni Ranged Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1755560726043196287, guid: 291005319e1fabe4288b01d6068e65c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6349,28 +6351,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 611283765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f30d54bd4b6d0429aa9be23f04d4f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 60e23d1b3048a5e47998f6154c6e6cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 17
   orientation: {fileID: 1333034302}
   playerHeight: 2
   groundMask:
+    serializedVersion: 2
     m_Bits: 64
-  grounded: 0
   groundDrag: 6
-  horizontalInput: 0
-  verticalInput: 0
-  moveDirection: {x: 0, y: 0, z: 0}
   rb: {fileID: 611283768}
   jumpForce: 15
   jumpCoolDown: 0.25
-  readyToJump: 1
   airMultiplier: 0.6
   fallMultiplier: 15
   slowWalkSpeed: 5
   maxHealth: 100
-  currentHealth: 0
   healthText: {fileID: 2064171570}
   footStepSound: {fileID: 611283773}
 --- !u!54 &611283768
@@ -9101,6 +9098,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yeni Ranged Enemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1755560726043196287, guid: 291005319e1fabe4288b01d6068e65c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9729,6 +9730,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yeni Melee Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4164246696304707717, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10142,7 +10147,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0952b7d42b18bfa4c9059e484f3d00b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13917,7 +13922,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 13230c6fdf54d3c42980100340c214cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14527,6 +14532,10 @@ PrefabInstance:
     - target: {fileID: 1755560726043196287, guid: 291005319e1fabe4288b01d6068e65c6, type: 3}
       propertyPath: m_Name
       value: Yeni Ranged Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1755560726043196287, guid: 291005319e1fabe4288b01d6068e65c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15965,7 +15974,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 7.82, y: 4.59, z: 19.293}
-  m_LocalScale: {x: 1, y: 3, z: 40}
+  m_LocalScale: {x: 1, y: 3, z: 4.5424}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2005049205}
@@ -16821,6 +16830,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yeni Ranged Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1755560726043196287, guid: 291005319e1fabe4288b01d6068e65c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16877,6 +16890,10 @@ PrefabInstance:
     - target: {fileID: 4164246696304707717, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
       propertyPath: m_Name
       value: Yeni Melee Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164246696304707717, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17850,6 +17867,10 @@ PrefabInstance:
     - target: {fileID: 1755560726043196287, guid: 291005319e1fabe4288b01d6068e65c6, type: 3}
       propertyPath: m_Name
       value: Yeni Ranged Enemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1755560726043196287, guid: 291005319e1fabe4288b01d6068e65c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19342,7 +19363,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2372110752703233277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f3b6785e30fe2144aee1565edf6c211, type: 3}
+  m_Script: {fileID: 11500000, guid: 02c5f6ebc92d2fe44ae5c1ded323adfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bonusHealth: 30
@@ -19355,7 +19376,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2372110753121274681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f3b6785e30fe2144aee1565edf6c211, type: 3}
+  m_Script: {fileID: 11500000, guid: 02c5f6ebc92d2fe44ae5c1ded323adfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bonusHealth: 30
@@ -19368,7 +19389,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2372110753101008289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f3b6785e30fe2144aee1565edf6c211, type: 3}
+  m_Script: {fileID: 11500000, guid: 02c5f6ebc92d2fe44ae5c1ded323adfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bonusHealth: 30
@@ -19381,7 +19402,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2372110752789030577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f3b6785e30fe2144aee1565edf6c211, type: 3}
+  m_Script: {fileID: 11500000, guid: 02c5f6ebc92d2fe44ae5c1ded323adfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bonusHealth: 30
@@ -21747,8 +21768,8 @@ Transform:
   m_GameObject: {fileID: 5191971523322297262}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5000001, y: 0.49999988, z: -0.49999985, w: 0.5000002}
-  m_LocalPosition: {x: 0.96, y: -0.37, z: 7.2}
-  m_LocalScale: {x: 138.9717, y: 138.9717, z: 138.9717}
+  m_LocalPosition: {x: 0.96, y: -0.55, z: 7.2}
+  m_LocalScale: {x: 117.35326, y: 117.35326, z: 117.35326}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450651676102937}
@@ -21855,8 +21876,8 @@ Transform:
   m_GameObject: {fileID: 5167711081901899260}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5000001, y: 0.49999988, z: -0.49999985, w: 0.5000002}
-  m_LocalPosition: {x: -0.9, y: -0.779, z: 4.66}
-  m_LocalScale: {x: 97.28019, y: 97.28019, z: 97.28019}
+  m_LocalPosition: {x: -0.14, y: -0.94, z: 4.66}
+  m_LocalScale: {x: 76.64414, y: 76.64414, z: 76.64414}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450651676102937}
@@ -22818,7 +22839,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1995711834095861977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4ae1d115ac74d1419b4d3cb2eac9fac, type: 3}
+  m_Script: {fileID: 11500000, guid: 8778067092f0c904bbcbd2084905acc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shakeDuration: 0.1
@@ -22830,9 +22851,6 @@ MonoBehaviour:
   reloadTime: 1.5
   fireRate: 0.1
   shootPoint: {fileID: 1407647873164056445}
-  currentAmmo: 0
-  isReloading: 0
-  nextFireTime: 0
 --- !u!23 &9077926072826280492
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -21,7 +21,12 @@ public class EnemyBullet : MonoBehaviour
             {
                 player.PlayerTakesDamage(damage);
             }
+        }
+
+        if (!other.isTrigger)
+        {
             Destroy(gameObject);
         }
     }
+
 }
