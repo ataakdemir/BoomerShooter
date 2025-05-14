@@ -22,6 +22,8 @@ public class PipeWeapon : MonoBehaviour
     private bool canAttack = true;
     private Quaternion originalRotation;
 
+    private static int currentPipeSoundIndex = 0;
+
     void Start()
     {
         originalRotation = transform.localRotation;
@@ -53,6 +55,9 @@ public class PipeWeapon : MonoBehaviour
                 enemyScript.TakeDamage(weaponData.damage);
         }
         StartCoroutine(ResetAttackCooldown());
+
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.pipeHitSounds[currentPipeSoundIndex]);
+        currentPipeSoundIndex = (currentPipeSoundIndex + 1) % AudioManager.Instance.pipeHitSounds.Length;
     }
 
     IEnumerator ResetAttackCooldown()
