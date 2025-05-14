@@ -24,9 +24,6 @@ public class WandWeapon : MonoBehaviour
 
     void Update()
     {
-        if (!transform.IsChildOf(GameObject.FindWithTag("Player").GetComponentInChildren<GunInventory>().weaponHolder))
-            return;
-
         if (Input.GetMouseButtonDown(0))
             StartFiring();
 
@@ -39,8 +36,6 @@ public class WandWeapon : MonoBehaviour
 
     void StartFiring()
     {
-        if (!gameObject.activeInHierarchy) return;
-
         if (!PlayerManaManager.Instance.UseMana(initialManaCost))
         {
             Debug.Log("Not enough mana to start firing!");
@@ -55,7 +50,6 @@ public class WandWeapon : MonoBehaviour
 
     void ContinueFiring()
     {
-        if (!gameObject.activeInHierarchy) return;
         manaConsumptionTimer += Time.deltaTime;
 
         if (manaConsumptionTimer >= 1f)
@@ -76,7 +70,6 @@ public class WandWeapon : MonoBehaviour
 
     void StopFiring()
     {
-        if (!gameObject.activeInHierarchy) return;
         isFiring = false;
     }
 
