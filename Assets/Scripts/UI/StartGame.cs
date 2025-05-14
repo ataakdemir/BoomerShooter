@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour
 {    public void Play()
     {
-        SceneManager.LoadScene("Tutorial Level");
+        SceneManager.LoadScene("LevelEditorScene");
     } 
 
     public void Quit()
