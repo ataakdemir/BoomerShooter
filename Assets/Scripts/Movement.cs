@@ -137,6 +137,8 @@ public class Movement : MonoBehaviour
     public void PlayerTakesDamage(float amount)
     {
         currentHealth -= amount;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHurtSound);
+
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         healthText.text = "Health: " + currentHealth.ToString("0");
         Debug.Log("Player Health:" + currentHealth);
