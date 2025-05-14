@@ -49,6 +49,9 @@ public class NailGunWeapon : MonoBehaviour
 
     void Shoot()
     {
+        if (!transform.IsChildOf(GameObject.FindWithTag("Player").GetComponentInChildren<GunInventory>().weaponHolder))
+            return;
+
         if (!PlayerManaManager.Instance.UseMana(weaponData.manaCost))
         {
             Debug.Log("No mana anymore!");
@@ -70,6 +73,8 @@ public class NailGunWeapon : MonoBehaviour
                 enemy.TakeDamage(weaponData.damage);
             }
         }
+
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.nailgunFireSound);
     }
 
     IEnumerator Reload()
