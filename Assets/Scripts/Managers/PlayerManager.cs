@@ -11,7 +11,7 @@ public class PlayerManaManager : MonoBehaviour
     [Header("Mana Settings")]
     public float maxMana = 100f;
     public float regenRate = 1f;
-    public float regenDelayAfterFire = 2f;
+    public float regenDelayAfterFire = 0.1f;
 
     [Header("UI")]
     public TextMeshProUGUI manaText;
@@ -73,6 +73,6 @@ public class PlayerManaManager : MonoBehaviour
     public void UpdateManaUI()
     {
         if (manaText != null)
-            manaText.text = "Mana: " + Mathf.FloorToInt(currentMana);
+            manaText.text = " " + Mathf.FloorToInt(currentMana);
     }
 }
