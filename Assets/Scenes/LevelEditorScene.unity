@@ -9764,10 +9764,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 805405883778940545, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
-      propertyPath: health
-      value: 70
-      objectReference: {fileID: 0}
     - target: {fileID: 4157165010827684789, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -43.14
@@ -9812,38 +9808,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yeni Melee Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4164246696304707717, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5880554929159091032, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 611283772}
-    - target: {fileID: 5880554929159091032, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
-      propertyPath: sightRange
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5880554929159091032, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
-      propertyPath: attackRange
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5880554929159091032, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
-      propertyPath: walkPointRange
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6139519039870065674, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
-      propertyPath: m_Speed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6139519039870065674, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
-      propertyPath: m_Acceleration
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6139519039870065674, guid: c8e67ce695de8ad469c5869086c6a1c2, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

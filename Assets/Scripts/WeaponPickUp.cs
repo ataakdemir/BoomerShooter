@@ -2,7 +2,7 @@
 
 public class WeaponPickUp : MonoBehaviour
 {
-    public enum WeaponType { Nailgun, Crossbow, Wand }
+    public enum WeaponType {Nailgun, Crossbow, Wand, None }
     public WeaponType weaponType;
 
     public GameObject weaponPrefab;
@@ -21,23 +21,21 @@ public class WeaponPickUp : MonoBehaviour
 
     void Update()
     {
-        if (!gameObject.activeInHierarchy) return; 
-
+        if (!gameObject.activeInHierarchy) return;
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             GunInventory inventory = player.GetComponentInChildren<GunInventory>();
             if (inventory != null)
             {
                 WeaponType oldWeapon = inventory.GetCurrentRangedWeaponType();
-
                 inventory.SetNewRangedWeapon(weaponPrefab, weaponType, weaponLocalPosition, weaponLocalRotation);
 
                 isPlayerInRange = false;
                 player = null;
-
                 gameObject.SetActive(false);
 
-                WeaponManager.Instance.ReactivatePickup(oldWeapon);
+                if (oldWeapon != WeaponType.None)
+                    WeaponManager.Instance.ReactivatePickup(oldWeapon);
             }
         }
     }

@@ -17,17 +17,17 @@ public class InventoryManager : MonoBehaviour
     {
         EquipWeapon(defaultWeapon);
     }
-    public void EquipWeapon(WeaponData newWeaponData) 
+    public void EquipWeapon(WeaponData newWeaponData)
     {
         eqippedWeapon = newWeaponData;
 
     }
-    private void ChangeWeaponPrefab(WeaponData WeaponData) 
+    private void ChangeWeaponPrefab(WeaponData WeaponData)
     {
-        
+
     }
     void Update()
     {
-        
+
     }
 }
