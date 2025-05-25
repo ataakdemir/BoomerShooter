@@ -57,7 +57,6 @@ public class EnemyAI : MonoBehaviour
                 RangedAttack();
         }
     }
-
     private void Patrolling()
     {
         if (!walkPointSet) SearchWalkPoint();
@@ -68,7 +67,6 @@ public class EnemyAI : MonoBehaviour
         if (Vector3.Distance(transform.position, walkPoint) < 1f)
             walkPointSet = false;
     }
-
     private void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
@@ -78,12 +76,10 @@ public class EnemyAI : MonoBehaviour
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
     }
-
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
     }
-
     private void AttackPlayer()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);

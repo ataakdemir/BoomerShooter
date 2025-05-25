@@ -11,12 +11,12 @@ public class GameOver : MonoBehaviour
     }
     public void StartMenu()
     {
-        SceneManager.LoadScene("StartMenu");
+        SceneManager.LoadScene("Alternative StartMenu");
     }
 
     public void Restart()
     {
-        SceneManager.LoadScene("Tutorial Level");
+        SceneManager.LoadScene("LEVEL 1");
 
     }
     public void Quit()

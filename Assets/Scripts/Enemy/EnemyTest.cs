@@ -11,8 +11,20 @@ public class EnemyTest : MonoBehaviour
         Debug.Log(gameObject.name + " hasar aldý: " + amount + " | Kalan can: " + health);
 
         if (health <= 0)
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeathSounds[currentEnemyDeathSoundIndex]);
+            Die();
+    }
+
+    private void Die()
+    {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeathSounds[currentEnemyDeathSoundIndex]);
         currentEnemyDeathSoundIndex = (currentEnemyDeathSoundIndex + 1) % AudioManager.Instance.enemyDeathSounds.Length;
+
+        ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(1);
+        }
+
         Destroy(gameObject);
     }
 }
