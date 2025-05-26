@@ -40,6 +40,9 @@ public class Movement : MonoBehaviour
     public TMP_Text healthText;
 
     public AudioSource footStepSound;
+
+    public GameObject pauseMenuUI;
+    private bool isPaused = false;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,6 +53,17 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.75f + 0.2f, groundMask);
 
         MyInput();
@@ -152,7 +166,7 @@ public class Movement : MonoBehaviour
     {
         currentHealth += healAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        healthText.text = "Health: " + currentHealth.ToString("0");
+        healthText.text = currentHealth.ToString("0");
     }
 
     public void Die()
@@ -181,5 +195,23 @@ public class Movement : MonoBehaviour
                 footStepSound.Pause();
             }
         }
+    }
+
+    void PauseGame()
+    {
+        pauseMenuUI.SetActive(true);   
+        Time.timeScale = 0f;           
+        isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    void ResumeGame()
+    {
+        pauseMenuUI.SetActive(false); 
+        Time.timeScale = 1f;           
+        isPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

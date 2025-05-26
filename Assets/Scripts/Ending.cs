@@ -4,11 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Ending : MonoBehaviour
 {
+    public float delay;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            SceneManager.LoadScene("WinScreen");
+        {            
+                StartCoroutine(LoadWinSceneAfterDelay());
         }
+    }
+    IEnumerator LoadWinSceneAfterDelay()
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("WinScreen");
     }
 }
