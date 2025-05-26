@@ -199,19 +199,25 @@ public class Movement : MonoBehaviour
 
     void PauseGame()
     {
-        pauseMenuUI.SetActive(true);   
-        Time.timeScale = 0f;           
-        isPaused = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+            isPaused = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     void ResumeGame()
     {
-        pauseMenuUI.SetActive(false); 
-        Time.timeScale = 1f;           
-        isPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(false);
+            Time.timeScale = 1f;
+            isPaused = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 }

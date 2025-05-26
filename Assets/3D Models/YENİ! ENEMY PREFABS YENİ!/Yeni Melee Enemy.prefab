@@ -576,15 +576,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 10
+  walkPointRange: 12
   timeBetweenAttacks: 4
-  sightRange: 25
+  sightRange: 17
   attackRange: 4
   playerInSightRange: 0
   playerInAttackRange: 0
   meleeEnemyDamage: 10
   rangedEnemyDamage: 0
   shootPoint: {fileID: 0}
+  bulletVisualPrefab: {fileID: 0}
+  bulletVisualSpeed: 40
 --- !u!95 &5980053649190356212
 Animator:
   serializedVersion: 5
@@ -625,8 +627,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.2593648, y: 3.6835399, z: 1}
-  m_Center: {x: 0.07684032, y: 1.3417689, z: 0}
+  m_Size: {x: 3.4777997, y: 3.6835399, z: 1.6796077}
+  m_Center: {x: 0.13080816, y: 1.3417689, z: 0.08386294}
 --- !u!1 &4290789820137479201
 GameObject:
   m_ObjectHideFlags: 0

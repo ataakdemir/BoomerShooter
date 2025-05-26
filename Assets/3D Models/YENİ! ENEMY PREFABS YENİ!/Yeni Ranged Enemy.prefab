@@ -128,15 +128,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
+  walkPointRange: 14
   timeBetweenAttacks: 5
-  sightRange: 12
+  sightRange: 25
   attackRange: 12
   playerInSightRange: 0
   playerInAttackRange: 0
   meleeEnemyDamage: 0
   rangedEnemyDamage: 5
   shootPoint: {fileID: 2958268835847186442}
+  bulletVisualPrefab: {fileID: 0}
+  bulletVisualSpeed: 40
 --- !u!95 &1322738207323516004
 Animator:
   serializedVersion: 5
@@ -177,8 +179,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.6112583, y: 3.975243, z: 1}
-  m_Center: {x: 0.16452973, y: 1.487622, z: 0}
+  m_Size: {x: 3.3912098, y: 3.975243, z: 2.561368}
+  m_Center: {x: 0.18618856, y: 1.487622, z: 0.21765877}
 --- !u!54 &2351249277931331966
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -713,13 +715,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7848158339847723415}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13060, y: -0, z: -5895}
+  m_LocalRotation: {x: 1.7053026e-13, y: -0.000000070080084, z: -0.1799625, w: 0.9836735}
+  m_LocalPosition: {x: -13059.994, y: 0.0073291473, z: -5894.977}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2496685351739570000}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20.735}
 --- !u!1 &7861953472496657574
 GameObject:
   m_ObjectHideFlags: 0
