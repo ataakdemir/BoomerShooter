@@ -134,6 +134,8 @@ MonoBehaviour:
   attackRange: 12
   playerInSightRange: 0
   playerInAttackRange: 0
+  meleeEnemyDamage: 0
+  rangedEnemyDamage: 5
   shootPoint: {fileID: 2958268835847186442}
 --- !u!95 &1322738207323516004
 Animator:

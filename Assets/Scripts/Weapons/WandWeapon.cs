@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DG.Tweening;
+
 public class WandWeapon : MonoBehaviour
 {
     [Header("Weapon Data")]
@@ -12,15 +11,22 @@ public class WandWeapon : MonoBehaviour
 
     [Header("Mana Settings")]
     public float initialManaCost = 5f;
-
-    private bool isFiring = false;
-    private float manaConsumptionTimer = 0f;
+    public float manaCostPerSecond = 5f;
 
     [Header("DOTween Settings")]
     public float punchStrength = 0.2f;
     public float punchDuration = 0.1f;
     public int punchVibrato = 10;
     public float punchElasticity = 1f;
+
+    private bool isFiring = false;
+    private LineRenderer lineRenderer;
+
+    void Start()
+    {
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
+    }
 
     void Update()
     {
@@ -48,48 +54,49 @@ public class WandWeapon : MonoBehaviour
         }
 
         isFiring = true;
-        manaConsumptionTimer = 0f;
-        ApplyDamage();
+        lineRenderer.enabled = true;
         transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
     }
 
     void ContinueFiring()
     {
         if (!gameObject.activeInHierarchy) return;
-        manaConsumptionTimer += Time.deltaTime;
 
-        if (manaConsumptionTimer >= 1f)
+        if (!PlayerManaManager.Instance.UseMana(manaCostPerSecond * Time.deltaTime))
         {
-            manaConsumptionTimer = 0f;
-
-            if (!PlayerManaManager.Instance.UseMana(weaponData.manaCostPerSecond))
-            {
-                Debug.Log("No mana anymore!");
-                StopFiring();
-                return;
-            }
-
-            ApplyDamage();
-            transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
+            Debug.Log("No mana anymore!");
+            StopFiring();
+            return;
         }
+
+        ApplyDamage();
+        UpdateBeamVisual();
     }
 
     void StopFiring()
     {
-        if (!gameObject.activeInHierarchy) return;
         isFiring = false;
+        lineRenderer.enabled = false;
     }
 
     void ApplyDamage()
     {
-        RaycastHit hit;
-        Debug.DrawRay(shootPoint.position, shootPoint.forward * weaponData.range, Color.cyan, 1f);
+        Debug.DrawRay(shootPoint.position, shootPoint.forward * weaponData.range, Color.cyan);
 
+        RaycastHit hit;
         if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, weaponData.range))
         {
             EnemyTest enemy = hit.transform.GetComponent<EnemyTest>();
             if (enemy != null)
-                enemy.TakeDamage(weaponData.damage);
+                enemy.TakeDamage(weaponData.damage * Time.deltaTime);
         }
+    }
+
+    void UpdateBeamVisual()
+    {
+        Vector3 start = shootPoint.position;
+        Vector3 end = shootPoint.position + shootPoint.forward * weaponData.range;
+        lineRenderer.SetPosition(0, start);
+        lineRenderer.SetPosition(1, end);
     }
 }

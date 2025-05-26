@@ -511,3 +511,5 @@ MonoBehaviour:
   punchDuration: 0.15
   punchVibrato: 10
   punchElasticity: 1
+  bulletVisualPrefab: {fileID: 7664722053394593868, guid: 17299e0f92450dd4c879e67bbe633d24, type: 3}
+  bulletVisualSpeed: 30

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,14 +19,18 @@ public class EnemyAI : MonoBehaviour
     // Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    private bool canDealDamage = false;
 
     // States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    public float meleeEnemyDamage;
+    public float rangedEnemyDamage;
+
     [Header("Ranged Enemy Settings")]
     public Transform shootPoint;
+    public GameObject bulletVisualPrefab;
+    public float bulletVisualSpeed = 40f;
 
     private Animator animator;
 
@@ -57,6 +60,7 @@ public class EnemyAI : MonoBehaviour
                 RangedAttack();
         }
     }
+
     private void Patrolling()
     {
         if (!walkPointSet) SearchWalkPoint();
@@ -67,6 +71,7 @@ public class EnemyAI : MonoBehaviour
         if (Vector3.Distance(transform.position, walkPoint) < 1f)
             walkPointSet = false;
     }
+
     private void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
@@ -76,20 +81,22 @@ public class EnemyAI : MonoBehaviour
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
     }
+
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
     }
+
     private void AttackPlayer()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer > attackRange)
         {
             animator.ResetTrigger("Attack");
-            canDealDamage = false;
             ResetAttack();
             return;
         }
+
         agent.isStopped = true;
         agent.updateRotation = false;
 
@@ -99,7 +106,6 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            canDealDamage = true;
             animator.SetTrigger("Attack");
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -112,10 +118,10 @@ public class EnemyAI : MonoBehaviour
         if (distanceToPlayer > attackRange)
         {
             animator.ResetTrigger("Attack");
-            canDealDamage = false;
             ResetAttack();
             return;
         }
+
         agent.isStopped = true;
         agent.updateRotation = false;
 
@@ -125,49 +131,47 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            canDealDamage = true;            
-            animator.SetTrigger("Attack");    
+            animator.SetTrigger("Attack");
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
+
     public void DealDamage()
     {
-        if (!canDealDamage) return;
-        canDealDamage = false; 
-
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer > attackRange) return;
 
         Movement pm = player.GetComponent<Movement>();
         if (pm != null)
-            pm.PlayerTakesDamage(20f);
+            pm.PlayerTakesDamage(meleeEnemyDamage);
     }
+
     public void ShootRaycast()
     {
-        if (!canDealDamage) return;
-        canDealDamage = false;
-
-        // Ray menzili olarak attackRange kullanılıyor
         RaycastHit hit;
         Vector3 origin = shootPoint.position;
         Vector3 direction = (player.position + Vector3.up * 1f - origin).normalized;
 
+        // Görsel mermi spawn
+        Vector3 visualTarget = player.position + Vector3.up * 1f;
+        GameObject bullet = Instantiate(bulletVisualPrefab, origin, Quaternion.identity);
+        bullet.AddComponent<BulletVisual>().Initialize(visualTarget, bulletVisualSpeed);
+
+        // Raycast hasarı
         if (Physics.Raycast(origin, direction, out hit, attackRange))
         {
-            // İsteğe bağlı: Debug çizgisi görebilmek için
             Debug.DrawLine(origin, hit.point, Color.red, 1f);
 
             if (hit.collider.CompareTag("Player"))
             {
                 var pm = hit.collider.GetComponent<Movement>();
                 if (pm != null)
-                    pm.PlayerTakesDamage(20f);
+                    pm.PlayerTakesDamage(rangedEnemyDamage);
             }
         }
         else
         {
-            // Ray hiçbir şey bulamadıysa
             Debug.DrawRay(origin, direction * attackRange, Color.yellow, 1f);
         }
     }
@@ -175,26 +179,40 @@ public class EnemyAI : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
-        canDealDamage = false;
         agent.isStopped = false;
         agent.updateRotation = true;
     }
-
-
-
 
     private void OnDrawGizmosSelected()
     {
         if (shootPoint == null) return;
 
-        // Başlangıç
         Vector3 origin = shootPoint.position;
-        // Hedefe yön
         Vector3 dir = (player != null)
             ? (player.position + Vector3.up * 1f - origin).normalized
             : transform.forward;
-        // Kırmızı çizgi
+
         Gizmos.color = Color.red;
         Gizmos.DrawLine(origin, origin + dir * attackRange);
+    }
+    private class BulletVisual : MonoBehaviour
+    {
+        private Vector3 target;
+        private float speed;
+
+        public void Initialize(Vector3 _target, float _speed)
+        {
+            target = _target;
+            speed = _speed;
+            Destroy(gameObject, 1f);
+        }
+
+        private void Update()
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, target) < 0.1f)
+                Destroy(gameObject);
+        }
     }
 }

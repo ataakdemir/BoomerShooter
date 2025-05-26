@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DG.Tweening;
 
 public class BowWeapon : MonoBehaviour
@@ -11,91 +9,110 @@ public class BowWeapon : MonoBehaviour
     [Header("Combat Settings")]
     public Transform shootPoint;
 
-    private float chargeStartTime;
-    private bool isCharging = false;
-
     [Header("DOTween Animation Settings")]
     public float punchStrength = 0.2f;
     public float punchDuration = 0.15f;
     public int punchVibrato = 10;
     public float punchElasticity = 1f;
 
+    [Header("Visual Bullet Settings")]
+    public GameObject bulletVisualPrefab;
+    public float bulletVisualSpeed = 30f;
+
+    private bool isFiring = false;
+
     void Update()
     {
-
         if (!transform.IsChildOf(GameObject.FindWithTag("Player").GetComponentInChildren<GunInventory>().weaponHolder))
             return;
 
-        if (Input.GetMouseButtonDown(0))
-            StartCharge();
-
-        if (Input.GetMouseButtonUp(0))
-            ReleaseShot();
+        if (Input.GetMouseButtonDown(0) && !isFiring)
+            StartCoroutine(ShootWithDelay());
     }
 
-    void StartCharge()
+    System.Collections.IEnumerator ShootWithDelay()
     {
-        isCharging = true;
-        chargeStartTime = Time.time;
-    }
+        isFiring = true;
 
-    void ReleaseShot()
-    {
-        
-        if (!isCharging)
-            return;
+        yield return new WaitForSeconds(0.2f); // 0.2 saniye gecikme
 
-        isCharging = false;
-        float chargeDuration = Time.time - chargeStartTime;
-
-        float manaCost;
-        float impactRadius;
-
-        if (chargeDuration >= 2f)
-        {
-            manaCost = 6f;
-            impactRadius = 3.5f;
-        }
-        else if (chargeDuration >= 1f)
-        {
-            manaCost = 4f;
-            impactRadius = 2.5f;
-        }
-        else
-        {
-            manaCost = 2f;
-            impactRadius = 1.5f;
-        }
-
+        // Mana kontrolü
+        float manaCost = 6f;
         if (!PlayerManaManager.Instance.UseMana(manaCost))
         {
             Debug.Log("No mana anymore!");
-            return;
+            isFiring = false;
+            yield break;
         }
 
         transform.DOPunchPosition(-transform.forward * punchStrength, punchDuration, punchVibrato, punchElasticity);
 
-        RaycastHit hit;
-        Vector3 targetPosition = shootPoint.position + shootPoint.forward * weaponData.range;
+        Vector3 centerDir = shootPoint.forward;
+        Vector3 rightDir = Quaternion.Euler(0, 10, 0) * centerDir;
+        Vector3 leftDir = Quaternion.Euler(0, -10, 0) * centerDir;
 
-        if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, weaponData.range))
-        {
-            targetPosition = hit.point;
-        }
-
-        Debug.DrawLine(shootPoint.position, targetPosition, Color.green, 1f);
-        Debug.DrawRay(targetPosition, Vector3.up * impactRadius, Color.yellow, 1f);
-
-        Collider[] hitEnemies = Physics.OverlapSphere(targetPosition, impactRadius);
-        foreach (Collider enemy in hitEnemies)
-        {
-            EnemyTest enemyScript = enemy.GetComponent<EnemyTest>();
-            if (enemyScript != null)
-                enemyScript.TakeDamage(weaponData.damage);
-        }
+        CreateBullet(centerDir);
+        CreateBullet(rightDir);
+        CreateBullet(leftDir);
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.bowFireSound);
 
+        isFiring = false;
     }
 
+    void CreateBullet(Vector3 direction)
+    {
+        Vector3 targetPosition = shootPoint.position + direction * weaponData.range;
+
+        GameObject bullet = Instantiate(bulletVisualPrefab, shootPoint.position, Quaternion.identity);
+        bullet.AddComponent<BulletVisual>().Initialize(targetPosition, bulletVisualSpeed, direction, weaponData.range, weaponData.damage);
+
+        Debug.DrawLine(shootPoint.position, targetPosition, Color.green, 1f);
+    }
+
+    private class BulletVisual : MonoBehaviour
+    {
+        private Vector3 target;
+        private float speed;
+        private Vector3 direction;
+        private float range;
+        private float damage;
+
+        private Vector3 startPosition;
+
+        public void Initialize(Vector3 _target, float _speed, Vector3 _direction, float _range, float _damage)
+        {
+            target = _target;
+            speed = _speed;
+            direction = _direction;
+            range = _range;
+            damage = _damage;
+            startPosition = transform.position;
+
+            Destroy(gameObject, 1.5f); 
+        }
+
+        private void Update()
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
+            Vector3 lookDir = (target - transform.position).normalized;
+            if (lookDir != Vector3.zero)
+                transform.rotation = Quaternion.LookRotation(lookDir);
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, direction, out hit, speed * Time.deltaTime))
+            {
+                EnemyTest enemyScript = hit.transform.GetComponent<EnemyTest>();
+                if (enemyScript != null)
+                {
+                    enemyScript.TakeDamage(damage);
+                    Destroy(gameObject); 
+                }
+            }
+
+            if (Vector3.Distance(startPosition, transform.position) >= range)
+                Destroy(gameObject);
+        }
+    }
 }

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
@@ -19,6 +18,10 @@ public class NailGunWeapon : MonoBehaviour
     public float reloadTime = 1.5f;
     public float fireRate = 0.1f;
     public Transform shootPoint;
+
+    [Header("Visual Bullet Settings")]
+    public GameObject bulletVisualPrefab; // 👈 Görsel mermi prefabı
+    public float bulletVisualSpeed = 50f; // 👈 Görsel mermi hızı
 
     private int currentAmmo;
     private bool isReloading = false;
@@ -61,7 +64,13 @@ public class NailGunWeapon : MonoBehaviour
         currentAmmo--;
 
         transform.DOShakeRotation(shakeDuration, shakeStrength, shakeVibrato, shakeRandomness);
-        
+
+        // 🔴 Görsel mermi spawn
+        Vector3 targetPoint = shootPoint.position + shootPoint.forward * weaponData.range;
+        GameObject bullet = Instantiate(bulletVisualPrefab, shootPoint.position, Quaternion.identity);
+        bullet.AddComponent<BulletVisual>().Initialize(targetPoint, bulletVisualSpeed);
+
+        // 🔴 Raycast hasar
         Debug.DrawRay(shootPoint.position, shootPoint.forward * weaponData.range, Color.red, 1f);
 
         RaycastHit hit;
@@ -83,5 +92,26 @@ public class NailGunWeapon : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = magazineSize;
         isReloading = false;
+    }
+
+    private class BulletVisual : MonoBehaviour
+    {
+        private Vector3 target;
+        private float speed;
+
+        public void Initialize(Vector3 _target, float _speed)
+        {
+            target = _target;
+            speed = _speed;
+            Destroy(gameObject, 1f);
+        }
+
+        private void Update()
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, target) < 0.1f)
+                Destroy(gameObject);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerManaManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class PlayerManaManager : MonoBehaviour
     private float regenCooldownTimer = 0f;
     private float regenTimer = 0f;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -32,6 +33,23 @@ public class PlayerManaManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Yeni sahne yüklendiðinde UI'yý güncelle
+        manaText = GameObject.Find("ManaText")?.GetComponent<TextMeshProUGUI>();
+        UpdateManaUI();
     }
 
     void Start()
