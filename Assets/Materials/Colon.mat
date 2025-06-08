@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Colon
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 2100000, guid: 3f9b52d46c6ee494481701b421494a6d, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_Parent: {fileID: 2100000, guid: 0addf5f97a69c87448c840629df97dde, type: 2}
+  m_ModifiedSerializedProperties: 2
   m_ValidKeywords:
   - _GLOSSYREFLECTIONS_OFF
   - _NORMALMAP
@@ -29,11 +29,11 @@ Material:
     m_TexEnvs:
     - _EmissionMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 0.2, y: 2}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: cec0f49dc93fa8d499e2122f0db8aa40, type: 3}
-        m_Scale: {x: 0.2, y: 2}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
