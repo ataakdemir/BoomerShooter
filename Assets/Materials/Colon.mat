@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Colon
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 2100000, guid: 0addf5f97a69c87448c840629df97dde, type: 2}
+  m_Parent: {fileID: 2100000, guid: af56202a95b53184c9146438082df5c0, type: 2}
   m_ModifiedSerializedProperties: 2
   m_ValidKeywords:
   - _GLOSSYREFLECTIONS_OFF
