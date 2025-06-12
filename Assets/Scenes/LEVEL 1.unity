@@ -7173,7 +7173,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.533
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -21349,19 +21349,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 699975596}
   sfxSource: {fileID: 1485660920}
-  mainMusicClip: {fileID: 8300000, guid: 07101edfdf34c99468064d464836f632, type: 3}
-  bowFireSound: {fileID: 8300000, guid: ad3a6452109c4594fbb753e4388a6230, type: 3}
-  nailgunFireSound: {fileID: 8300000, guid: f71c6c44cbeb71a4c9e078461b404075, type: 3}
-  wandFireSound: {fileID: 8300000, guid: 4fb8270b18ca5d243ab9d1b3c150f7bc, type: 3}
+  mainMusicClip: {fileID: 8300000, guid: f6233f7b1e87c9547ababf5c7e491a4e, type: 3}
+  bowFireSound: {fileID: 8300000, guid: bf25a8537146401449cff83082f1b3df, type: 3}
+  nailgunFireSound: {fileID: 8300000, guid: b574f66c7e9b94b44a13c6325b39a072, type: 3}
+  wandFireSound: {fileID: 8300000, guid: 94e59d60c989f4b4bb45459b675affee, type: 3}
   pipeHitSounds:
-  - {fileID: 8300000, guid: b9b43b945e3e7a0478aa30052d0fd21c, type: 3}
-  - {fileID: 8300000, guid: 751d2bf75f4ed824db4f78c94b2eec28, type: 3}
-  - {fileID: 8300000, guid: 8d5e873c25a60264b8d2784bd3814bdd, type: 3}
-  playerHurtSound: {fileID: 8300000, guid: 602ca6b63aa54d742873977bacfdc097, type: 3}
-  healthPickupSound: {fileID: 8300000, guid: e1fdde2bb48b9f24197509ae975b4f3f, type: 3}
+  - {fileID: 8300000, guid: 2763907add3b7764bb8dd71ef17755e8, type: 3}
+  - {fileID: 8300000, guid: e2d2dd0e4acf7d948904417d6fe5f2d1, type: 3}
+  - {fileID: 8300000, guid: 3a61f99d4dac36b43857b5a1c3e9c04e, type: 3}
+  playerHurtSound: {fileID: 8300000, guid: 59d50b459a2233f4380f2dcfb20a0fe3, type: 3}
+  healthPickupSound: {fileID: 8300000, guid: 5108dd87187e6554692f23cb1697ca75, type: 3}
   enemyDeathSounds:
-  - {fileID: 8300000, guid: db2aac8b915b88b48a05911155d6688d, type: 3}
-  - {fileID: 8300000, guid: 65faef9de5822d2459505eff541289f0, type: 3}
+  - {fileID: 8300000, guid: 7833298e56d3ed944a10ae28f157617d, type: 3}
+  - {fileID: 8300000, guid: fbb537dd1bc44eb4c910549319196a8f, type: 3}
 --- !u!4 &2130903941
 Transform:
   m_ObjectHideFlags: 0

@@ -30,4 +30,10 @@ public class StartGame : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("HellMode");
     }
+
+    public void SecondLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("LevelEditorScene");
+    }
 }
